@@ -3,7 +3,7 @@ const mysql = require('mysql2');
 const db = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    password: 'rifat2003',
+    password: 'Write_your_pass',
     database: 'clubsphere',
     dateStrings: true   // return DATE columns as 'YYYY-MM-DD' strings (no timezone shifting)
 })
