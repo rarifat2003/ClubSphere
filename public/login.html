@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClubSphere - Login</title>
+  <link rel="stylesheet" href="auth.css" />
+</head>
+
+<body>
+
+  <a href="index.html" class="brand">ClubSphere</a>
+
+  <div class="auth-card">
+    <h1 class="auth-title">Welcome back</h1>
+    <p class="auth-desc">Enter your credentials to access your club account.</p>
+
+    <div id="error" class="error"></div>
+
+    <form data-endpoint="/auth/login">
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" placeholder="coach@example.com" required />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="••••••••" required />
+      </div>
+
+      <button type="submit" class="btn-submit">Login</button>
+    </form>
+
+    <div class="auth-switch">
+      Don't have an account? <a href="registration.html">Get Started</a>
+    </div>
+
+    <a href="index.html" class="back-link">&larr; Back to homepage</a>
+  </div>
+
+  <script src="auth.js"></script>
+</body>
+
+</html>

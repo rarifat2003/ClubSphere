@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClubSphere - Register</title>
+  <link rel="stylesheet" href="auth.css" />
+</head>
+
+<body>
+
+  <a href="index.html" class="brand">ClubSphere</a>
+
+  <div class="auth-card">
+    <h1 class="auth-title">Create an account</h1>
+    <p class="auth-desc">Start managing your club, players, and operations.</p>
+
+    <div id="error" class="error"></div>
+
+    <form data-endpoint="/auth/register">
+      <div class="form-group">
+        <label for="name">Full name</label>
+        <input type="text" id="name" name="name" placeholder="Alex Morgan" required />
+      </div>
+
+      <div class="form-group">
+        <label for="club">Club name</label>
+        <input type="text" id="club" name="club_name" placeholder="Hawks FC" required />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" placeholder="coach@example.com" required />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="At least 8 characters" minlength="8"
+          required />
+      </div>
+
+      <button type="submit" class="btn-submit">Get Started</button>
+    </form>
+
+    <div class="auth-switch">
+      Already have an account? <a href="login.html">Login</a>
+    </div>
+
+    <a href="index.html" class="back-link">&larr; Back to homepage</a>
+  </div>
+
+  <script src="auth.js"></script>
+</body>
+
+</html>

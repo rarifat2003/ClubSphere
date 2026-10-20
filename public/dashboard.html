@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClubSphere - Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+
+  <!-- TOP: club name + logout -->
+  <header class="top-hero">
+    <h2 id="club-name">Loading...</h2>
+    <div class="user-box">
+      <span id="user-name"></span>
+      <button id="logout" class="btn btn-light">Logout</button>
+    </div>
+  </header>
+
+  <main class="page">
+
+    <!-- MIDDLE: summary cards -->
+    <section class="middle-hero" id="summary"></section>
+
+    <!-- BOTTOM: tabs -->
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="squad">My Squad</button>
+      <button class="tab-btn" data-tab="players">Player Pool</button>
+      <button class="tab-btn" data-tab="matches">Matches</button>
+      <button class="tab-btn" data-tab="finance">Finance</button>
+    </nav>
+
+    <div class="bottom-hero">
+
+      <!-- ================= SQUAD ================= -->
+      <section id="tab-squad" class="tab">
+        <div class="panel">
+          <h3>Add a New Player <small>(joins your squad and is also listed in RegionX; the fee is recorded as an
+              expense)</small></h3>
+          <form id="new-player-form" class="grid-form">
+            <label>Name <input name="name" required></label>
+            <label>Position
+              <select name="position" required>
+                <option>Goalkeeper</option>
+                <option>Defender</option>
+                <option>Midfielder</option>
+                <option>Forward</option>
+              </select>
+            </label>
+            <label>Rating (1-100) <input type="number" name="rating" min="1" max="100" required></label>
+            <label>Fee <input type="number" name="fee" min="0" step="0.01" value="0"></label>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-dark">Add to Squad</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="panel">
+          <h3>Current Squad <small>(players you have signed, with goal totals)</small></h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Rating</th>
+                <th>Fee</th>
+                <th>Signed</th>
+                <th>Matches</th>
+                <th>Goals</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="squad-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================= PLAYER POOL ================= -->
+      <section id="tab-players" class="tab" hidden>
+        <div class="panel">
+          <div class="panel-head">
+            <h3>RegionX Players <small>(read-only: sign free players into your squad)</small></h3>
+            <div class="filters">
+              <input id="player-search" placeholder="Search name...">
+              <select id="player-position">
+                <option value="">All positions</option>
+                <option>Goalkeeper</option>
+                <option>Defender</option>
+                <option>Midfielder</option>
+                <option>Forward</option>
+              </select>
+              <select id="player-status">
+                <option value="">All players</option>
+                <option value="Free">Free agents only</option>
+              </select>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Rating</th>
+                <th>Region</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="players-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================= MATCHES ================= -->
+      <section id="tab-matches" class="tab" hidden>
+        <div class="panel">
+          <h3>Add / Edit Match <small>(leave goals empty for an upcoming match)</small></h3>
+          <form id="match-form" class="grid-form">
+            <input type="hidden" name="match_id">
+            <label>Opponent <input name="opponent" required></label>
+            <label>Date <input type="date" name="match_date" required></label>
+            <label>Venue <input name="venue"></label>
+            <label>Our goals <input type="number" name="goals_for" min="0"></label>
+            <label>Their goals <input type="number" name="goals_against" min="0"></label>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-dark">Add Match</button>
+              <button type="button" class="btn btn-light cancel-btn" hidden>Cancel</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="panel">
+          <h3>Matches</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Opponent</th>
+                <th>Venue</th>
+                <th>Score</th>
+                <th>Result</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="matches-body"></tbody>
+          </table>
+        </div>
+
+        <div class="panel" id="goal-panel" hidden>
+          <h3 id="goal-title">Player goals</h3>
+          <form id="goal-form" class="grid-form">
+            <label>Player (from your squad) <select name="player_id" id="goal-player" required></select></label>
+            <label>Goals <input type="number" name="goals" min="0" value="1"></label>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-dark">Save goals</button>
+              <button type="button" id="goal-close" class="btn btn-light">Close</button>
+            </div>
+          </form>
+          <table>
+            <thead>
+              <tr>
+                <th>Player</th>
+                <th>Position</th>
+                <th>Goals</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="goal-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================= FINANCE ================= -->
+      <section id="tab-finance" class="tab" hidden>
+        <div class="panel">
+          <h3>Add / Edit Transaction</h3>
+          <form id="finance-form" class="grid-form">
+            <input type="hidden" name="txn_id">
+            <label>Type
+              <select name="type" required>
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+              </select>
+            </label>
+            <label>Category <input name="category" placeholder="Sponsorship, Wages..." required></label>
+            <label>Amount <input type="number" name="amount" min="0.01" step="0.01" required></label>
+            <label>Date <input type="date" name="txn_date" required></label>
+            <label>Description <input name="description"></label>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-dark">Add Transaction</button>
+              <button type="button" class="btn btn-light cancel-btn" hidden>Cancel</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="panel">
+          <h3>Balance <small>(SUM + GROUP BY)</small></h3>
+          <div id="fin-totals" class="mini-cards"></div>
+          <table>
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Category</th>
+                <th>Count</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody id="fin-category-body"></tbody>
+          </table>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <h3>Transaction History</h3>
+            <div class="filters">
+              <select id="fin-filter">
+                <option value="">All</option>
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+              </select>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Description</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="fin-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="dashboard.js"></script>
+</body>
+
+</html>

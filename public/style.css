@@ -1,0 +1,277 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #17191e;
+  background-color: #ffffff;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Header */
+.header {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 36px 24px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: #11141a;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 14px;
+  color: #5d636f;
+  margin-left: 28px;
+  font-weight: 500;
+}
+
+.nav-links a.active {
+  color: #11141a;
+  font-weight: 600;
+}
+
+/* Main Container */
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 60px 24px 100px;
+}
+
+/* Hero Section */
+.hero {
+  max-width: 780px;
+  margin-bottom: 72px;
+}
+
+.hero-title {
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -1.8px;
+  color: #15181e;
+  margin-bottom: 22px;
+}
+
+.hero-subtitle {
+  font-size: 18px;
+  color: #5c626d;
+  line-height: 1.5;
+  margin-bottom: 32px;
+}
+
+.cta-group {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.cta-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.cta-label {
+  font-size: 11px;
+  color: #717784;
+  margin-bottom: 7px;
+  font-weight: 500;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.btn-dark {
+  background-color: #121826;
+  color: #ffffff;
+}
+
+.btn-light {
+  background-color: #ffffff;
+  color: #121826;
+  border: 1px solid #e1e4ea;
+}
+
+.btn:hover {
+  opacity: 0.88;
+}
+
+/* Badges */
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.badge {
+  background-color: #f3f4f7;
+  color: #5d636f;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 9999px;
+}
+
+/* Features Section */
+.features {
+  margin-top: 10px;
+}
+
+.section-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: #7a828e;
+  margin-bottom: 10px;
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.6px;
+  color: #15181e;
+  max-width: 620px;
+  margin-bottom: 36px;
+}
+
+/* Grid & Cards */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.feature-card {
+  background: #ffffff;
+  border: 1px solid #edf0f3;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.feature-card.full-width {
+  grid-column: span 3;
+}
+
+.icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.icon-purple {
+  background-color: #eff0ff;
+  color: #5e64e8;
+}
+
+.icon-teal {
+  background-color: #edfbf7;
+  color: #2bbca0;
+}
+
+.icon-amber {
+  background-color: #fef8eb;
+  color: #e59f2a;
+}
+
+.icon-blue {
+  background-color: #eef6ff;
+  color: #3b82f6;
+}
+
+.feature-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #17191e;
+  margin-bottom: 8px;
+}
+
+.feature-card p {
+  font-size: 13.5px;
+  color: #6c727f;
+  line-height: 1.5;
+}
+
+/* Footer */
+.footer {
+  border-top: 1px solid #f0f2f5;
+  padding: 30px 24px 40px;
+}
+
+.footer-inner {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: #8b929e;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #8b929e;
+  margin-left: 20px;
+  transition: color 0.15s;
+}
+
+.footer-links a:hover {
+  color: #17191e;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 38px;
+  }
+
+  .section-title {
+    font-size: 26px;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card.full-width {
+    grid-column: span 1;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .footer-links a:first-child {
+    margin-left: 0;
+  }
+}
