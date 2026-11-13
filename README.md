@@ -29,5 +29,5 @@ Open `db.js` and set the password to the one you use for your localhost MySQL `r
 
 ### 5. Run the server ( Terminal )
 ```bash
-nodemon server.js
+node server.js
 ```
